@@ -1,0 +1,39 @@
+<% include partials/header %>
+
+
+<div class="container">
+	<div class="jumbotron myjumbo">
+	 	<h1 class="display-4"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span>The Awesome Blog Site!</h1>
+	 	<p class="lead">A bunch of beautiful places I explored</p>
+	</div>
+</div>
+
+
+
+<div class="myContainer">
+	<div class="outerBlog">
+	<% blog.forEach(function(newBlog){ %>
+		<div class="innerBlog">
+			<div class="row">
+				<div class="col-lg-4">
+					<img class="img-thumbnail" src="<%= newBlog.image %>">
+				</div>
+
+				<div class="col-lg-8">
+					<h3> <%= newBlog.title %></h3>
+					<p>Created by: <a href="/users/<%= newBlog.author.id %>/profile"><strong><%= newBlog.author.username %> </strong></a></p>
+					<p> <i> <%= newBlog.time.toDateString() %> </i> </p>
+					<p> <%= newBlog.content.substring(0, 50) %> ...</p>
+					<a href="/blogs/<%= newBlog._id %>" class="btn btn-primary">View Blog <span><i class="fas fa-eye"></i></span></a>
+				</div>
+			</div>
+		</div>
+	<% }) %>
+	</div>
+</div>
+
+
+
+
+
+<% include partials/footer %>

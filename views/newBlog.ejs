@@ -1,0 +1,34 @@
+<% include partials/header %>
+
+
+
+<div class="myContainer">
+	<h1 class="text-center">Create Blog</h1>
+
+	<div class="innerBlog">
+		<form style="text-align: center;" action="/blogs" method="POST">
+
+			<label for="title">Title of the Blog: </label>
+			<input id="title" class="form-control" type="text" name="title" placeholder="Enter Title"><br><br>
+
+			<label for="image">Image URL: </label>
+			<input id="image" class="form-control" type="text" name="image" placeholder="Enter URL"><br><br>
+
+			<label for="content">Content: </label>
+			<textarea style="border-radius: 10px;" id="content" class="form-control" name="content" placeholder="Enter Content" rows="3" required></textarea><br>
+
+			<label for="price">Price: </label>
+			<input id="price" class="form-control" type="number" name="price" placeholder="Enter Price"><br><br>
+
+			<button class="btn btn-outline-primary" type="submit"><i class="fa fa-sign-in"></i>Create</button>
+
+		</form>	
+	</div>
+	
+</div>
+
+
+
+
+
+<% include partials/footer %>

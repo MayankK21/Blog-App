@@ -1,0 +1,21 @@
+<% include partials/header %>
+
+
+<div class="myContainer">
+	<div class="outerBlog">
+		<div class="innerBlog">
+			<div class="text-center">
+				<img class="img-thumbnail rounded" src="<%= user.image %>" width="40%"><br><br>
+				<h2><%= user.firstName.toUpperCase() %></h2>
+				<h2><%= user.lastName.toUpperCase() %></h2>
+				<h2><%= user.email %></h2>
+				<h2><%= user.username.toUpperCase() %></h2>
+				<p><strong>User ID: </strong><%= user._id%></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<% include partials/footer %>

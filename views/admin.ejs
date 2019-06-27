@@ -1,0 +1,263 @@
+<% include partials/header %>
+<% 
+
+var myArray = [
+  "table-primary", 
+  "table-secondary", 
+  "table-warning", 
+  "table-success", 
+  "table-default", 
+  "table-active",
+  "table-info",
+  "table-danger",
+  "table-light",
+  "table-dark"
+];
+
+var color = myArray[Math.floor(Math.random()*myArray.length)];
+
+
+%>
+
+<div class="row">
+	<div class="col-md-2">
+		<div id="leftSidebar">
+			<div class="card">
+				<h3 style="text-align: center;" class="card-header">
+					<span>
+						<img class="img-thumbnail" src="<%= admin.image %>">
+					</span> 
+					Admin
+				</h3>
+			</div>
+
+
+                <!-- Tabs with icons on Card -->
+            <div class="card card-nav-tabs">
+                <div class="card-header card-header-primary">
+                    <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                    <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wraper">
+                            <ul class="nav" data-tabs="tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#profile" data-toggle="tab">
+                                        <i class="fas fa-user"></i>
+                                        Profile
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#blogs" data-toggle="tab">
+                                        <i class="fas fa-user"></i>
+                                        Blogs
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#comments" data-toggle="tab">
+                                        <i class="fas fa-user"></i>
+                                        Comments
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#users" data-toggle="tab">
+                                        <i class="fas fa-user"></i>
+                                        Users
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-10">
+    	<div class="card-body">
+            <div class="tab-content text-center">
+            	<div class="tab-pane active" id="profile">
+            		<table class="table center">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th scope="col">User ID</th>
+					      <th scope="col">Image</th>
+					      <th scope="col">Username</th>
+					      					      
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	
+ 					    <tr class="<%= color %>">
+					      <td><%= admin._id %></td>
+					      <td style="width: 5%;"><img class="img-thumbnail" src="<%= admin.image %>"></td>
+					      <td><%= admin.username %></td>
+					      
+					      </form></td>
+					    </tr>
+					    
+					  </tbody>
+					</table>
+					<div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wraper">
+                            <ul class="nav" data-tabs="tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#changeProfile" data-toggle="tab">
+                                        <i class="fas fa-user"></i>
+                                        Profile Settings
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+            		
+            	</div>
+
+            	<div class="tab-pane" id="changeProfile">
+            		<div class="adminContainer">
+            			<div class="nav-tabs-navigation">
+	                        <div class="nav-tabs-wraper">
+	                            <ul class="nav" data-tabs="tabs">
+	                                <li class="nav-item">
+	                                    <a class="nav-link" href="#profile" data-toggle="tab">
+	                                        back
+	                                    </a>
+	                                </li>
+	                            </ul>
+	                        </div>
+	                    </div>
+	                    
+	            		<div class="innerBlog">
+							<form style="text-align: center;" action="/register/<%= admin._id %>" method="POST">
+								
+								<h1>Change Password</h1><br>
+								
+								<label> Old Password </label>
+								<div class="input-group form-group">
+					                <div class="input-group-prepend">
+					                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+					                </div>
+					                <input type="password" name="oldpassword" class="form-control" placeholder="Enter password">
+					            </div>
+
+					            <label> New Password </label>
+					            <div class="input-group form-group">
+					                <div class="input-group-prepend">
+					                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+					                </div>
+					                <input type="password" name="newpassword" class="form-control" placeholder="Enter password" required>
+					            </div>
+
+					            <br>
+								<button class="btn btn-outline-danger" type="submit"><i class="fa fa-sign-in"></i>Save Changes</button>
+
+							</form>	
+						</div>
+					</div>
+            	</div>
+
+                <div class="tab-pane" id="blogs">
+                	<table class="table center">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th scope="col">ID</th>
+					      <th scope="col">Image</th>
+					      <th scope="col">Blog Title</th>
+					      <th scope="col">Author</th>
+					      <th scope="col">Delete</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	<% blogs.forEach(function(blog){ %>
+					  	<% var color = myArray[Math.floor(Math.random()*myArray.length)]; %>
+ 					    <tr class="<%= color %>">
+					      <td scope="row"><%= blog._id %></td>
+					      <td style="width: 10%;"><a href="/blogs/<%= blog._id %>"><img class="img-thumbnail" src="<%= blog.image %>"></a></td>
+					      <td><%= blog.title %></td>
+					      <td><%= blog.author.username %></td>
+					      <td><form action="/blogs/<%= blog._id%>?_method=DELETE" method="POST">
+					      	<button class="btn btn-outline-danger">Delete</button>
+					      </form></td>
+					    </tr>
+					    <% }) %>
+					  </tbody>
+					</table>
+
+					
+                    <!-- <p> Blogs </p> -->
+                </div>
+
+                <div class="tab-pane" id="comments">
+                    <table class="table center rounded">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th scope="col">CommentID</th>
+					      <th scope="col">Comment</th>
+					      <th scope="col">Blog Title</th>
+					      <th scope="col">Comment Author</th>
+					      <th scope="col">Delete</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  <% blogs.forEach(function(blog){
+							blog.comments.forEach(function(comment){ 
+						%>
+						<% var color = myArray[Math.floor(Math.random()*myArray.length)]; %>
+					  	
+ 					    <tr class="<%= color %>">
+					      <th scope="row"><%=comment._id %></th>
+					      <td><%= comment.text %></td>
+					      <td><%= blog.title %></td>
+					      <td><%= comment.author.username %></td>
+					      <td><form action="/comments/<%= comment._id%>" method="POST">
+					      	<button class="btn btn-outline-danger">Delete</button>
+					      </form></td>
+					    </tr>
+
+					    <% }) %>
+					  <% }) %>
+
+					  </tbody>
+					</table>
+                 </div>
+
+                <div class="tab-pane" id="users">
+                    <table class="table center">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th scope="col">UserID</th>
+					      <th scope="col">User Image</th>
+					      <th scope="col">Username</th>
+					      <th scope="col">Delete</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	<% users.forEach(function(user){ %>
+					  	<% var color = myArray[Math.floor(Math.random()*myArray.length)]; %>
+ 					    <tr class="<%= color %>">
+					      <th><%= user._id %></th>
+					      <td style="width: 7%;"><a href="/users/<%= user._id %>/profile"><img class="img-thumbnail" src="<%= user.image %>"></a></td>
+					      <td><%= user.username %></td>
+					      <td><form action="/users/<%= user._id%>" method="POST">
+					      	<button class="btn btn-outline-danger">Delete</button>
+					      </form></td>
+					    </tr>
+					    <% }) %>
+					  </tbody>
+					</table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+<% include partials/footer %>

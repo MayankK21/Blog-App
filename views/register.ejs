@@ -1,0 +1,77 @@
+<% include partials/header %>
+
+
+
+
+<div class="loginContainer">
+	
+
+	<div class="innerBlog">
+		<form style="text-align: center;" action="/register" method="POST">
+		<h1>Register</h1><br>
+            <label>First Name: </label>
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input type="text" name="firstName" class="form-control" placeholder="Enter Name">
+            </div>
+
+            <label>Last Name: </label>
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input type="text" name="lasttName" class="form-control" placeholder="Enter Name">
+            </div>
+
+            <label>Email ID: </label>
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input type="email" name="email" class="form-control" placeholder="Enter Email">
+            </div>
+            
+            <label>Pick a username</label>
+			<div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input type="text" name="username" class="form-control" placeholder="Enter Username">
+            </div>
+
+            <label>Password</label>
+			<div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input type="password" name="password" class="form-control" placeholder="Enter Password">
+            </div>
+
+            <label>Profile Pic</label>
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="far fa-image"></i></span>
+                </div>
+                <input type="text" name="image" class="form-control" placeholder="Paste URL">
+            </div>
+            <div class="form-check-inline float-left">
+                <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" required>
+                I accept the <a href="#">"terms and conditions"</a>
+            </div>
+            <br><br>
+			<button class="btn btn-outline-danger" type="submit"><i class="fa fa-sign-in"></i>Sign Up</button>
+
+		</form>	
+	</div>
+	
+</div>
+
+
+
+
+
+
+<% include partials/footer %>

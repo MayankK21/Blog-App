@@ -1,0 +1,77 @@
+<%include partials/header %>
+
+<div class="row">
+	<div class="col-md-4">
+		<div class="card">
+			<div class="card-header">Categories</div>
+			<ul class="list-group list-group-flush">
+		    	<li class="list-group-item active" >Option 1</li>
+			    <li class="list-group-item">Option 2</li>
+			    <li class="list-group-item">Option 3</li>
+		 	</ul>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<div class="innerBlog">
+			<div class=" border">
+				<div style="text-align: center;">
+					<img class="rounded img-fluid" src=" <%= blog.image %> ">
+				</div>
+
+				<br>
+				<h3>
+					<a href="#"><%= blog.title %></a>
+					<span class="float-right">&#8377;<%= blog.price %>/trip</span>
+				</h3><br>
+				<p><strong> <%= blog.time.toDateString() %> </strong></p>
+				<p> <%= blog.content%> </p>
+				
+			</div>
+
+			<p class="float-right">Created by: <a href="#"><strong><%= blog.author.username %> </strong></a></p>
+			<br>
+
+			<h5>Comments</h5>
+			<div class="card-header rounded">
+				<a href="/blogs/<%= blog.id%>/comments/new" class="btn btn-sm btn-success float-right">Add Comment <span><i class="fas fa-comment"></i></span></a>
+				<br><br>
+				<% blog.comments.forEach(function(comment){ %>
+
+				<form action="/blogs/<%= blog._id%>/comments/<%= comment._id%>?_method=DELETE" method="POST">
+					<p>
+						<a href="/users/<%= comment.author.id %>/profile"<strong><%= comment.author.username %></strong></a> - 
+						<%= comment.text%>
+						<% if(currentUser && currentUser._id.equals(comment.author.id)){ %>
+						<a href="/blogs/<%= blog._id %>/comments/<%= comment._id %>/edit" class="btn btn-sm btn-warning">Edit</a>
+						<button class="btn btn-sm btn-danger">Delete</button>		
+					<% } %>
+					</p>
+
+					
+				</form>
+				
+									
+				
+				<% }) %>
+			</div>
+			
+			<br>
+			
+			<% if(currentUser){ %>
+				<% if(currentUser._id.equals(blog.author.id)){ %> 
+					<div style="text-align: center;">
+						<form action="/blogs/<%= blog._id%>?_method=DELETE" method="POST">
+							<a href="/blogs/<%= blog._id%>/edit" class="btn btn-primary">Update Blog <span><i class="fas fa-edit"></i></span></a>
+							<!-- <a href="/blogs/<%= blog._id%>/delete" class="btn btn-primary">Delete Blog </a> -->
+							<button class="btn btn-danger">Delete Blog <span><i class="fas fa-trash"></i></span></button>		
+						</form>
+					</div>
+				<% } %>	
+			<% } %>	
+		</div>
+	</div>
+</div>
+	
+
+
+<%include partials/footer %>
